@@ -1,6 +1,7 @@
 // index.js
 require('dotenv').config();
-
+const puppeteer = require('puppeteer-core');
+const chrome = require('chrome-aws-lambda');
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 
@@ -53,13 +54,11 @@ async function checkAppointment(page) {
 }
 
 async function main() {
-   const chrome = require('chrome-aws-lambda');
-
-const browser = await puppeteer.launch({
-  args: chrome.args,
-  executablePath: await chrome.executablePath,
-  headless: chrome.headless,
-});
+    const browser = await puppeteer.launch({
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+    });
     const page = await browser.newPage();
     
     try {
@@ -69,7 +68,9 @@ const browser = await puppeteer.launch({
         console.error('An error occurred:', error);
         await sendTelegramMessage(`Error: ${error.message}`);
     } finally {
-        await browser.close();
+        if (browser) {
+            await browser.close();
+        }
     }
 }
 
