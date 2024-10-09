@@ -1,5 +1,6 @@
 // index.js
 require('dotenv').config();
+const puppeteer = require('puppeteer-core');
 const puppeteer = require('puppeteer');
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
