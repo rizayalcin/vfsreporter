@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VFS Appointment Checker</title>
+</head>
+<body>
+    <h1>VFS Appointment Checker</h1>
+    <button id="checkBtn">Check Appointment</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('checkBtn').addEventListener('click', async () => {
+            const result = document.getElementById('result');
+            result.textContent = 'Checking...';
+            try {
+                const response = await fetch('/api/check');
+                const data = await response.text();
+                result.textContent = data;
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
