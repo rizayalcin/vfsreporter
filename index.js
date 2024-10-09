@@ -1,7 +1,6 @@
 // index.js
 require('dotenv').config();
 const puppeteer = require('puppeteer-core');
-const puppeteer = require('puppeteer');
 const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 
@@ -54,9 +53,13 @@ async function checkAppointment(page) {
 }
 
 async function main() {
-    const browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+   const chrome = require('chrome-aws-lambda');
+
+const browser = await puppeteer.launch({
+  args: chrome.args,
+  executablePath: await chrome.executablePath,
+  headless: chrome.headless,
+});
     const page = await browser.newPage();
     
     try {
