@@ -54,11 +54,14 @@ async function checkAppointment(page) {
 }
 
 async function main() {
-    const browser = await puppeteer.launch({
-        args: chrome.args,
-        executablePath: await chrome.executablePath,
-        headless: chrome.headless,
-    });
+    let browser = null;
+    browser = await chromium.puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: chromium.headless,
+            ignoreHTTPSErrors: true,
+        });
     const page = await browser.newPage();
     
     try {
