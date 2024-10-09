@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 const main = require('../index');
+const puppeteer = require('puppeteer-core');
+const chrome = require('chrome-aws-lambda');
 
 module.exports = async (req, res) => {
     try {
