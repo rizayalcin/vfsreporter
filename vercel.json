@@ -1,10 +1,13 @@
 {
     "version": 2,
-   "builds": [
+    "builds": [
     {
       "src": "api/check.js",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["node_modules/**"] }
+      "config": { 
+        "includeFiles": ["node_modules/**"],
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
     "routes": [
