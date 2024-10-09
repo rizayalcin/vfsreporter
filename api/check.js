@@ -1,5 +1,5 @@
 require('dotenv').config();
-const puppeteer = require('puppeteer');
+
 const main = require('../index');
 
 module.exports = async (req, res) => {
